@@ -13,10 +13,11 @@ function CarouselEffect() {
         showIndicators={false}
         showThumbs={false}
       >
-        {img.map((imageItemList) => {
-          return <img src={imageItemList} />;
+        {img.map((imageItemList, id) => {
+          return <img src={imageItemList} key={id} />;
         })}
       </Carousel>
+      <div className={style.fed}></div>
     </div>
   );
 }
