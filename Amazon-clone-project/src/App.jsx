@@ -1,11 +1,15 @@
 import { useState } from "react";
-;
 import "./App.css";
+import Header from "./components/Header/Header";
+import CarouselEffect from "./components/carousel/Carousel";
 
 function App() {
-
-
-  return <h1>Hello Habtamu</h1>;
+  return (
+    <div>
+      <Header />
+      <CarouselEffect/>
+    </div>
+  );
 }
 
 export default App;
