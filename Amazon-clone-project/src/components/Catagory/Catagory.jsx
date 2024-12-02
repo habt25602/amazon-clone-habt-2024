@@ -1,7 +1,8 @@
 import React from "react";
 import { CatagoryImage } from "./catagoryjson";
-import CatagoryCard from "./CatagoryCard";
+
 import style from "../Catagory/Catagory.module.css";
+import CatagoryCard from "./CatagoryCard.Jsx";
 
 function Catagory() {
   return (
