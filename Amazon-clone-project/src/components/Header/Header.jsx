@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import flag from "../../assets/images/usaflag.png";
 import Amazonlogo from "../../assets/images/AmazonLogo.png";
@@ -7,10 +7,16 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { FaSearch } from "react-icons/fa";
 import style from "../Header/Header.module.css";
 import LowerHeader from "./LowerHeader";
+import { DataContext } from "../DataProvider/DataProvider";
 
 function Header() {
+  const [{ basket }, dispatch] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
+
   return (
-    <>
+    <section className={style.fixed}>
       <section>
         {" "}
         <div className={style.header_container}>
@@ -47,7 +53,7 @@ function Header() {
 
             <Link to="/auth">
               <div>
-                <p>Heallo,Sign in</p>
+                <p>Hello,Sign in</p>
                 <span>Accont & Lists</span>
               </div>
             </Link>
@@ -61,13 +67,13 @@ function Header() {
 
             <Link to="/cart" className={style.cart}>
               <IoCartOutline size={35} />
-              <span>0</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </div>
       </section>
       <LowerHeader />
-    </>
+    </section>
   );
 }
 
