@@ -8,9 +8,10 @@ import { FaSearch } from "react-icons/fa";
 import style from "../Header/Header.module.css";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase";
 
 function Header() {
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -39,7 +40,7 @@ function Header() {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="Search Products" />
-            <FaSearch className={style.icon} size={25} />
+            <FaSearch className={style.icon} size={38} />
           </div>
 
           <div className={style.order_container}>
@@ -51,10 +52,19 @@ function Header() {
               </select>
             </a>
 
-            <Link to="/auth">
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Hello,Sign in</p>
-                <span>Accont & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello,{user?.email?.split("@")[0]}</p>
+                    <span onClick={() => auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello,Sign in</p>
+                    <span>Accont & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
 
