@@ -40,7 +40,7 @@ function Header() {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="Search Products" />
-            <FaSearch className={style.icon} size={38} />
+            <FaSearch className={style.icon} size={39} />
           </div>
 
           <div className={style.order_container}>

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import SigninLogo from "../../assets/images/amazon_sign_in _logo.png";
@@ -16,13 +17,16 @@ function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [laoding, setLoading] = useState({
+  const [loading, setLoading] = useState({
     signIn: false,
     signUp: false,
   });
 
   const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
+  const navData = useLocation();
+
+  console.log(navData);
 
   console.log(user);
 
@@ -30,7 +34,7 @@ function Auth() {
     e.preventDefault();
     console.log(e.target.name);
     if (e.target.name == "signin") {
-      setLoading({ ...laoding, signIn: true });
+      setLoading({ ...loading, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
         .then((userInfo) => {
           console.log(userInfo);
@@ -38,14 +42,14 @@ function Auth() {
             type: Type.SET_USER,
             user: userInfo.user,
           });
-          setLoading({ ...laoding, signIn: false });
-          navigate("/");
+          setLoading({ ...loading, signIn: false });
+          navigate(navData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
         });
     } else {
-      setLoading({ ...laoding, signUp: true });
+      setLoading({ ...loading, signUp: true });
       createUserWithEmailAndPassword(auth, email, password)
         .then((userInfo) => {
           console.log(userInfo);
@@ -53,8 +57,8 @@ function Auth() {
             type: Type.SET_USER,
             user: userInfo.user,
           });
-          setLoading({ ...laoding, signUp: false });
-          navigate("/");
+          setLoading({ ...loading, signUp: false });
+          navigate(navData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
@@ -70,6 +74,19 @@ function Auth() {
       {/* form */}
       <div className={style.login_container}>
         <h1>Sign in</h1>
+
+        {navData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navData.state.msg}
+          </small>
+        )}
 
         <form action="">
           <div>
@@ -98,13 +115,13 @@ function Auth() {
             className={style.login_signin_btn}
             name="signin"
           >
-            {laoding.signIn ? <ClipLoader color="#000" size={15} /> : "Sign in"}
+            {loading.signIn ? <ClipLoader color="#000" size={15} /> : "Sign in"}
           </button>
         </form>
         <p>
           By continuing, you agree to the Amazon Fake Clone Conditions of Use
           and Sale. Please see our Privacy Notice, our Cookies Notice and our
-          Interst-Based Ads Notice.
+          Interest-Based Ads Notice.
         </p>
         <button
           type="submit"
@@ -113,7 +130,7 @@ function Auth() {
           name="signup"
         >
           {" "}
-          {laoding.signUp ? (
+          {loading.signUp ? (
             <ClipLoader color="#000" size={15} />
           ) : (
             "Create your Amazon Account"

@@ -1,7 +1,6 @@
 import { useReducer, useContext } from "react";
 import { Type } from "./action.type";
 
-
 export const initialState = {
   basket: [],
 };
@@ -47,6 +46,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         basket: newBasket,
+      };
+
+    case Type.EMPTY_CART:
+      return {
+        ...state,
+        basket: [],
       };
 
     case Type.SET_USER:
