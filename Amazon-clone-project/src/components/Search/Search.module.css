@@ -1,0 +1,13 @@
+.results_header {
+  font-size: 16px;
+  border-bottom: solid 2px var(--primary-shade);
+  margin-bottom: 10px;
+  padding-top: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.search_results{
+   display: flex;
+   gap: 20px;
+   margin: 20px;
+}

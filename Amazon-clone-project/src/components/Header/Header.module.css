@@ -157,6 +157,32 @@
   }
   .language {
     display: none;
-  }.search{padding-right: 20px;
-  padding-left: 20px;}
+  }
+  .search {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.suggestionList {
+  list-style-type: none; /* Remove default list styling */
+
+  border: 1px solid #ccc; /* Add border */
+  position: absolute; /* Position it absolutely */
+  background-color: white;
+  color: black;
+
+  width: 62%;
+  max-height: 200px; /* Limit height for overflow */
+  overflow-y: auto; /* Scroll if there are too many suggestions */
+  top: 52%; /* Position it below the search box */
+}
+
+.suggestionList li {
+  padding: 8px; /* Add padding for clickable area */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.suggestionList li:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
 }

@@ -10,6 +10,7 @@ import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Search from "./components/Search/Search";
 const stripePromise = loadStripe(
   "pk_test_51QTDcr095ipIlTkQ11oQDcNxWxDHv4j7l1xj6tyVUFpYAAHMrUyrr3ZUoCc5swcbrWEchHr8Q16NXe8BxGkHVbE300e89PGUIH"
 );
@@ -50,6 +51,7 @@ function Routering() {
         />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/search-results" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>

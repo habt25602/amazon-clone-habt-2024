@@ -20,6 +20,8 @@ function Product() {
         setIsLoading(false);
       });
   }, []);
+
+
   return (
     <>
       {isLoading ? (
