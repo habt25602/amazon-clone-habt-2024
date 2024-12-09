@@ -12,13 +12,14 @@ function App() {
       if (authUser) {
         console.log(authUser);
         dispatch({
-          type:Type.SET_USER,
-          user:authUser
-        })
-      }else{
+          type: Type.SET_USER,
+          user: authUser,
+        });
+      } else {
         dispatch({
-          type:Type.SET_USER,
-          user:null})
+          type: Type.SET_USER,
+          user: null,
+        });
       }
     });
   }, []);
