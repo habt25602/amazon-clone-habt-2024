@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
 import SigninLogo from "../../assets/images/amazon_sign_in _logo.png";
-import style from "./SignUp.module.css";
+import style from '../Auth/SignUP.module.css'
 import { auth } from "../../Utility/firebase";
 import { DataContext } from "../../components/DataProvider/DataProvider";
 import {
